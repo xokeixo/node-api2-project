@@ -5,19 +5,18 @@
 // BREAK UP THIS MONOLITHIC FILE USING ROUTES
 const express = require('express');
 
-const server = express();
+const postsRouter = require('./posts/posts-router')
 
-const postRouter = require('./posts/posts-router');
+const server = express();
 
 server.use(express.json());
 
-server.use('/api/posts', postRouter);
-
+server.use('/api/posts', postsRouter)
 
 server.use('*', (req, res) => {
-  res.status(404).send(`
-    <p>Sorry!! Cant find that resource</p>
-  `);
+  res.status(404).json({
+      message: 'Error: Not found!'
+  })
 });
 
 module.exports = server;
