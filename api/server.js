@@ -7,16 +7,16 @@ const express = require('express');
 
 const server = express();
 
-const usersRouter = require('./posts/posts-router');
+const postRouter = require('./posts/posts-router');
 
 server.use(express.json());
 
-server.use('/api/posts', usersRouter);
+server.use('/api/posts', postRouter);
 
 
 server.use('*', (req, res) => {
   res.status(404).send(`
-    <p>Cant find that resource</p>
+    <p>Sorry!! Cant find that resource</p>
   `);
 });
 
